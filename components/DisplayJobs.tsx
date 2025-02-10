@@ -13,7 +13,7 @@ const DisplayJobs = ({ jobs }: any) => {
           <div>Exp | Onsite | 12Lpa</div>
           <p>{job.description}</p>
           <Button className="w-full" asChild>
-            <Link href="/candidate/apply/1">Apply Now</Link>
+            <Link href="/candidate/jobs/1">Apply Now</Link>
           </Button>
         </div>
       ))}

@@ -20,3 +20,9 @@ export async function createJobApplication(data: JobApplicationSchemaDto) {
 
   return application;
 }
+
+export async function getJobById(id: number) {
+  return await db.job.findUnique({
+    where: { id },
+  });
+}
