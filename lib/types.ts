@@ -1,4 +1,10 @@
 import { z } from "zod";
+import { Icon, IconProps } from "@tabler/icons-react";
+import { RefAttributes } from "react";
+
+/**
+ * Schema for Forms
+ */
 
 export const CreateJobSchema = z.object({
   title: z.string().min(2).max(50),
@@ -20,3 +26,14 @@ export const JobApplicationSchema = z.object({
 });
 
 export type JobApplicationSchemaDto = z.infer<typeof JobApplicationSchema>;
+
+/**
+ * General Types
+ */
+
+export type NavLinkType = {
+  id: string;
+  label: string;
+  href: string;
+  Icon?: React.ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+};

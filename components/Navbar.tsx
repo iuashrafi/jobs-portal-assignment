@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
-import Link from "next/link";
-import { IconBriefcase2, IconBuilding, IconStack2 } from "@tabler/icons-react";
+import { NavLinkData } from "@/lib/utils";
+import { Fragment } from "react";
+import NavLinkButton from "./NavLinkButton";
 
 const Navbar = () => {
   return (
@@ -8,36 +10,22 @@ const Navbar = () => {
       <div className="bg-green-20">
         <Image src={"/logo.svg"} height={60} width={60} alt="Logo" />
       </div>
-      <ul className="flex space-x-8">
-        <li>
-          <Link
-            href="/"
-            className="flex gap-1 bg-[#F6EFFC] rounded-md py-2 px-3"
-          >
-            <IconStack2 stroke={2} />
-            <span>Dashboard</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/"
-            className="flex gap-1 hover:bg-[#F6EFFC] text-[#666666] rounded-md py-2 px-3"
-          >
-            <IconBriefcase2 stroke={2} />
-            <span className="text-[#666666]">Jobs</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/"
-            className="flex gap-1 hover:bg-[#F6EFFC] text-[#666666] rounded-md py-2 px-3"
-          >
-            <IconBuilding stroke={2} />
-            <span className="text-[#666666]">Company</span>
-          </Link>
-        </li>
+      <ul className="flex space-x-6">
+        <NavLinkItems />
       </ul>
     </nav>
+  );
+};
+
+const NavLinkItems = () => {
+  return (
+    <>
+      {NavLinkData.map((navLink) => (
+        <Fragment key={navLink.id}>
+          <NavLinkButton navLink={navLink} />
+        </Fragment>
+      ))}
+    </>
   );
 };
 
