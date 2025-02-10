@@ -10,7 +10,7 @@ export default function Home() {
             Company
           </div>
         </Link>
-        <Link href="/candidate">
+        <Link href="/candidate/jobs">
           <div className="hover:scale-[1.025] transition-all cursor-pointer border border-[#E2E8F0] px-20 py-16 rounded-lg">
             Candidate
           </div>

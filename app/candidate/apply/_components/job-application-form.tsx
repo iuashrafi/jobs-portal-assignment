@@ -1,0 +1,75 @@
+"use client";
+
+import { createJobApplication } from "@/app/actions/candidate";
+import FormFieldWrapper from "@/components/custom-forms/FormFieldWrapper";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { JobApplicationSchema, JobApplicationSchemaDto } from "@/lib/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+const JobApplicationForm = ({ jobId }: { jobId: number }) => {
+  console.log("job id = ", jobId, typeof jobId);
+  const form = useForm<JobApplicationSchemaDto>({
+    resolver: zodResolver(JobApplicationSchema),
+    defaultValues: {
+      jobId,
+      name: "",
+      email: "",
+      resumeLink: "",
+      coverLetter: "",
+    },
+  });
+
+  async function onSubmit(values: JobApplicationSchemaDto) {
+    console.log("values= ", values);
+    const application = await createJobApplication(values);
+    if (!application)
+      console.log("Error occurred while submitting application");
+    else form.reset();
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormFieldWrapper
+          name="name"
+          label="Candidate Name"
+          placeholder="Candidate Name"
+          control={form.control}
+          renderInput={(field) => <Input {...field} type="text" />}
+        />
+
+        <FormFieldWrapper
+          name="email"
+          label="Candidate Email"
+          placeholder="Candidate Email"
+          control={form.control}
+          renderInput={(field) => <Input {...field} type="text" />}
+        />
+
+        <FormFieldWrapper
+          name="resumeLink"
+          label="Resume Link"
+          placeholder="Resume Link"
+          control={form.control}
+          renderInput={(field) => <Input {...field} type="text" />}
+        />
+
+        <FormFieldWrapper
+          name="coverLetter"
+          label="Cover Letter"
+          placeholder="Cover Letter"
+          control={form.control}
+          renderInput={(field) => <Textarea {...field} />}
+        />
+
+        <Button type="submit">Apply</Button>
+      </form>
+    </Form>
+  );
+};
+
+export default JobApplicationForm;

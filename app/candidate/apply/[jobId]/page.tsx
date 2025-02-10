@@ -1,8 +1,15 @@
-export default function Page() {
+import JobApplicationForm from "../_components/job-application-form";
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ jobId: number }>;
+}) {
+  const { jobId } = await params;
   return (
     <div>
-      A basic application form to submit candidate details (name, email, resume
-      link, cover letter).
+      <h1>Apply to this Job with Jobid = {jobId} </h1>
+      <JobApplicationForm jobId={jobId} />
     </div>
   );
 }

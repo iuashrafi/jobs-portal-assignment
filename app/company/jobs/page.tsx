@@ -1,33 +1,32 @@
+import { getAllJobs } from "@/app/actions/jobs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-export default function Page() {
+export default async function Page() {
+  const jobs = await getAllJobs();
+  console.log("jobs= ", jobs);
   return (
     <div className="py-8">
       <h1 className="text-2xl">Jobs</h1>
       <Button asChild variant="outline">
         <Link href="/company/jobs/new">Create New Job</Link>
       </Button>
-      <DisplayJobs />
+
+      <DisplayJobs jobs={jobs} />
     </div>
   );
 }
-
-const DisplayJobs = () => {
+const DisplayJobs = ({ jobs }: any) => {
   return (
     <div className="grid grid-cols-12 gap-4">
-      {Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map(() => (
-        <div className="col-span-4 xl:col-span-3 border p-4 rounded-xl">
-          <div>
-            <div>Full Stack Developer</div>
-            <div>Amazon</div>
-          </div>
+      {jobs.map((job: any) => (
+        <div
+          key={job.id}
+          className="col-span-4 xl:col-span-3 border p-4 rounded-xl"
+        >
+          <div>{job.title}</div>
           <div>Exp | Onsite | 12Lpa</div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            assumenda maxime voluptatem itaque blanditiis exercitationem
-            recusandae quam non ullam facilis.
-          </p>
-          <Button className="w-full">Apply Now</Button>
+          <p>{job.description}</p>
+          <Button className="w-full">View Job</Button>
         </div>
       ))}
     </div>
