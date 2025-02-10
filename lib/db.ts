@@ -1,3 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
-export const prisma = new PrismaClient();
+declare global {
+  var primsa: PrismaClient | undefined;
+}
+
+export const db = globalThis.primsa || new PrismaClient();
