@@ -6,8 +6,8 @@ import NavLinkButton from "./NavLinkButton";
 
 const Navbar = () => {
   return (
-    <nav className="px-6 h-[68px] border-b app-border flex items-center space-x-10">
-      <div className="bg-green-20">
+    <nav className="md:px-6 h-[60px] md:h-[68px] border-b app-border flex items-center space-x-10">
+      <div className="bg-green-00 flex">
         <Image src={"/logo.svg"} height={60} width={60} alt="Logo" />
       </div>
       <ul className="flex space-x-6">

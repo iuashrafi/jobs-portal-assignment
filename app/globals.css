@@ -80,3 +80,7 @@ body {
 .app-text-secondary{
   color : #666666;
 }
+
+.app-btn-primary{
+  background: #8851FF;
+}

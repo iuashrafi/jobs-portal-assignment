@@ -1,13 +1,12 @@
 // app/api/jobs/[id]/route.ts
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { db } from "@/lib/db";
 
-const prisma = new PrismaClient();
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  const job = await prisma.job.findUnique({
+  const job = await db.job.findUnique({
     where: { id: parseInt(params.id) },
   });
 
