@@ -70,3 +70,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom css */
+
+.app-border{
+  border-color: #E2E8F0;
+}
+
+.app-text-secondary{
+  color : #666666;
+}
