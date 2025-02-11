@@ -8,16 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IconDots } from "@tabler/icons-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Link from "next/link";
-import DeleteJobDialog from "./DeleteJobDialog";
 
-const JobsListing = ({ jobs }: any) => {
+const ApplicationsListing = ({ applications }: any) => {
   return (
     <div className="min-h-screen mt-16 mb-8">
       <div className="app-table-shadow rounded-xl">
@@ -25,16 +17,16 @@ const JobsListing = ({ jobs }: any) => {
           <TableHeader className="bg-[#F7F9FB] text-base">
             <TableRow className="">
               <TableHead className="min-w-[200px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
-                Job Title
+                Candidate
               </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
-                Location
+                Email
               </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
-                Description
+                Resume Link
               </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
-                Applications
+                Cover Letter
               </TableHead>
               <TableHead className="min-w-[50px] text-black font-semibold text-right rounded-tr-xl pr-8">
                 Actions
@@ -42,35 +34,31 @@ const JobsListing = ({ jobs }: any) => {
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white">
-            {jobs.map((job: any, index: number) => {
-              const isLastRow = index === jobs.length - 1;
+            {applications.map((application: any, index: number) => {
+              const isLastRow = index === applications.length - 1;
               return (
-                <Fragment key={job.id}>
-                  {/* <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}> */}
+                <Fragment key={application.id}>
+                  {/* <Link href={`/company/applications/${application.id}`} legacyBehavior={true}> */}
                   <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
                     <TableCell
                       className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
                     >
-                      {job.title}
+                      {application.name}
                     </TableCell>
-                    <TableCell>{job.location || "Bangalore"}</TableCell>
-                    <TableCell>{job.description}</TableCell>
+                    <TableCell>{application.location || "Bangalore"}</TableCell>
+                    <TableCell>{application.description}</TableCell>
                     <TableCell>10</TableCell>
                     <TableCell
                       className={`text-right pr-6 ${
                         isLastRow ? "rounded-br-xl" : ""
                       }`}
                     >
-                      <DropdownMenu>
+                      set
+                      {/* <DropdownMenu>
                         <DropdownMenuTrigger>
                           <IconDots stroke={2} />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem asChild>
-                            <Link href={`/company/jobs/${job.id}`}>
-                              View Job
-                            </Link>
-                          </DropdownMenuItem>
                           <DropdownMenuItem asChild>
                             <Link href={`/company/jobs/${job.id}/applications`}>
                               View Applications
@@ -85,7 +73,7 @@ const JobsListing = ({ jobs }: any) => {
                             <DeleteJobDialog jobId={job.id} />
                           </DropdownMenuItem>
                         </DropdownMenuContent>
-                      </DropdownMenu>
+                      </DropdownMenu> */}
                     </TableCell>
                   </TableRow>
                   {/* </Link> */}
@@ -99,4 +87,4 @@ const JobsListing = ({ jobs }: any) => {
   );
 };
 
-export default JobsListing;
+export default ApplicationsListing;

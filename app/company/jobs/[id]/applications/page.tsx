@@ -1,4 +1,6 @@
 import { getApplicationsForJobId } from "@/app/actions/company";
+import ApplicationsListing from "@/app/company/_components/ApplicationsListing";
+import { TypographyH1 } from "@/components/typography";
 
 export default async function Page({
   params,
@@ -11,13 +13,11 @@ export default async function Page({
   const applications = await getApplicationsForJobId(Number(id));
   console.log("applications = ", applications);
   return (
-    <div>
-      <h1>View applications submitted for a specific job post with id={id}.</h1>
-      <ul>
-        {applications.map((application) => (
-          <li key={application.id}>Applied by : {application.name}</li>
-        ))}
-      </ul>
+    <div className="bg-green-00">
+      <div className="flex justify-between items-center">
+        <TypographyH1 text={"Applications"} />
+      </div>
+      <ApplicationsListing applications={applications} />
     </div>
   );
 }

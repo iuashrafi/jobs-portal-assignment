@@ -18,7 +18,7 @@ const DisplayJobs = ({ jobs }: any) => {
             className="w-full app-btn-primary rounded-lg mt-2 text-base"
             asChild
           >
-            <Link href="/candidate/jobs/1">Apply Now</Link>
+            <Link href={`/candidate/jobs/${job.id}`}>Apply Now</Link>
           </Button>
         </div>
       ))}
