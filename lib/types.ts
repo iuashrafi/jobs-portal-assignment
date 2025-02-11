@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { Icon, IconProps } from "@tabler/icons-react";
 import { RefAttributes } from "react";
+import { JobCategory } from "./enum";
 
 /**
  * Schema for Forms
@@ -9,8 +10,11 @@ import { RefAttributes } from "react";
 export const CreateJobSchema = z.object({
   id: z.number().nullable(),
   title: z.string().min(2).max(50),
-  category: z.string().min(2).max(50),
-  description: z.string(),
+  category: z.nativeEnum(JobCategory),
+  description: z.string().min(10),
+  company: z.string().min(2).max(50),
+  location: z.string().min(2).max(50),
+  salary: z.coerce.number().int().gte(0),
 });
 
 export type CreateJobSchemaDto = z.infer<typeof CreateJobSchema>;

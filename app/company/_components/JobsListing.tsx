@@ -42,56 +42,69 @@ const JobsListing = ({ jobs }: any) => {
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white">
-            {jobs.map((job: any, index: number) => {
-              const isLastRow = index === jobs.length - 1;
-              return (
-                <Fragment key={job.id}>
-                  {/* <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}> */}
-                  <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
-                    <TableCell
-                      className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
-                    >
-                      {job.title}
-                    </TableCell>
-                    <TableCell>{job.location || "Bangalore"}</TableCell>
-                    <TableCell>{job.description}</TableCell>
-                    <TableCell>10</TableCell>
-                    <TableCell
-                      className={`text-right pr-6 ${
-                        isLastRow ? "rounded-br-xl" : ""
-                      }`}
-                    >
-                      <DropdownMenu>
-                        <DropdownMenuTrigger>
-                          <IconDots stroke={2} />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem asChild>
-                            <Link href={`/company/jobs/${job.id}`}>
-                              View Job
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href={`/company/jobs/${job.id}/applications`}>
-                              View Applications
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link href={`/company/jobs/${job.id}/edit`}>
-                              Edit Job
-                            </Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <DeleteJobDialog jobId={job.id} />
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                  {/* </Link> */}
-                </Fragment>
-              );
-            })}
+            {jobs.length === 0 && (
+              <TableRow
+                className="h-[60px] italic text-center"
+                aria-colspan={4}
+              >
+                <TableCell colSpan={5}>
+                  No Jobs Found, Try Creating One.
+                </TableCell>
+              </TableRow>
+            )}
+            {jobs.length > 0 &&
+              jobs.map((job: any, index: number) => {
+                const isLastRow = index === jobs.length - 1;
+                return (
+                  <Fragment key={job.id}>
+                    {/* <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}> */}
+                    <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
+                      <TableCell
+                        className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
+                      >
+                        {job.title}
+                      </TableCell>
+                      <TableCell>{job.location || "Bangalore"}</TableCell>
+                      <TableCell>{job.description}</TableCell>
+                      <TableCell>10</TableCell>
+                      <TableCell
+                        className={`text-right pr-6 ${
+                          isLastRow ? "rounded-br-xl" : ""
+                        }`}
+                      >
+                        <DropdownMenu>
+                          <DropdownMenuTrigger>
+                            <IconDots stroke={2} />
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem asChild>
+                              <Link href={`/company/jobs/${job.id}`}>
+                                View Job
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                              <Link
+                                href={`/company/jobs/${job.id}/applications`}
+                              >
+                                View Applications
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                              <Link href={`/company/jobs/${job.id}/edit`}>
+                                Edit Job
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                              <DeleteJobDialog jobId={job.id} />
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                    {/* </Link> */}
+                  </Fragment>
+                );
+              })}
           </TableBody>
         </Table>
       </div>
