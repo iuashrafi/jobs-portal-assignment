@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   Table,
   TableBody,
@@ -7,7 +8,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IconDots } from "@tabler/icons-react";
-import { Fragment } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const JobsListing = ({ jobs }: any) => {
   return (
@@ -38,23 +47,44 @@ const JobsListing = ({ jobs }: any) => {
               const isLastRow = index === jobs.length - 1;
               return (
                 <Fragment key={job.id}>
-                  <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB]">
-                    <TableCell
-                      className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
-                    >
-                      {job.title}
-                    </TableCell>
-                    <TableCell>{job.location || "Bangalore"}</TableCell>
-                    <TableCell>{job.description}</TableCell>
-                    <TableCell>10</TableCell>
-                    <TableCell
-                      className={`text-right ${
-                        isLastRow ? "rounded-br-xl" : ""
-                      }`}
-                    >
-                      <IconDots stroke={2} />
-                    </TableCell>
-                  </TableRow>
+                  <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}>
+                    <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
+                      <TableCell
+                        className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
+                      >
+                        {job.title}
+                      </TableCell>
+                      <TableCell>{job.location || "Bangalore"}</TableCell>
+                      <TableCell>{job.description}</TableCell>
+                      <TableCell>10</TableCell>
+                      <TableCell
+                        className={`text-right pr-6 ${
+                          isLastRow ? "rounded-br-xl" : ""
+                        }`}
+                      >
+                        <DropdownMenu>
+                          <DropdownMenuTrigger>
+                            <IconDots stroke={2} />
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem asChild>
+                              <Link
+                                href={`/company/jobs/${job.id}/applications`}
+                              >
+                                View Applications
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                              <Link href={`/company/jobs/${job.id}/edit`}>
+                                Edit Job
+                              </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>Delete Job</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  </Link>
                 </Fragment>
               );
             })}

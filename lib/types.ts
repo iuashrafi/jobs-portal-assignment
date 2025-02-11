@@ -7,6 +7,7 @@ import { RefAttributes } from "react";
  */
 
 export const CreateJobSchema = z.object({
+  id: z.number().nullable(),
   title: z.string().min(2).max(50),
   category: z.string().min(2).max(50),
   description: z.string(),

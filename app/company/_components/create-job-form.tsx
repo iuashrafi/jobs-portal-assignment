@@ -8,12 +8,22 @@ import { Input } from "@/components/ui/input";
 import { CreateJobSchema, CreateJobSchemaDto } from "@/lib/types";
 import FormFieldWrapper from "@/components/custom-forms/FormFieldWrapper";
 import { Textarea } from "@/components/ui/textarea";
-import { createJob } from "@/app/actions/jobs";
+import { createJob, editJob } from "@/app/actions/jobs";
 
-const CreateJobForm = () => {
+interface CreateJobSchemaProps {
+  initialData: {
+    id: number | null;
+    title: string;
+    description: string;
+    category: string;
+  };
+}
+
+const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
   const form = useForm<CreateJobSchemaDto>({
     resolver: zodResolver(CreateJobSchema),
-    defaultValues: {
+    defaultValues: initialData ?? {
+      id: null,
       title: "",
       description: "",
       category: "",
@@ -21,12 +31,19 @@ const CreateJobForm = () => {
   });
 
   async function onSubmit(values: CreateJobSchemaDto) {
-    console.log("values= ", values);
-    const job = await createJob(values);
-    if (!job) {
-      console.log("Error creating a job");
+    if (values.id) {
+      alert("sending data for  updation = " + JSON.stringify(values));
+      const job = await editJob(values);
+      if (!job) {
+        console.log("Error updating a job");
+      }
+    } else {
+      alert("creating new job = " + JSON.stringify(values));
+      const job = await createJob(values);
+      if (!job) {
+        console.log("Error creating a job");
+      }
     }
-
     form.reset();
   }
   return (

@@ -1,4 +1,4 @@
-import CreateJobForm from "./_component/create-job-form";
+import CreateJobForm from "../../_components/create-job-form";
 
 export default function Page() {
   return (
