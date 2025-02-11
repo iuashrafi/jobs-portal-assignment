@@ -12,6 +12,15 @@ export async function createJob(data: CreateJobSchemaDto) {
   return job;
 }
 
-export async function getAllJobs() {
-  return await db.job.findMany();
+export async function getAllJobs(searchQuery?: string) {
+  return await db.job.findMany({
+    where: searchQuery
+      ? {
+          title: {
+            contains: searchQuery,
+            mode: "insensitive",
+          },
+        }
+      : {},
+  });
 }
