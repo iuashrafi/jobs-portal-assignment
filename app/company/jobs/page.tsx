@@ -9,7 +9,7 @@ export default async function Page() {
   console.log("jobs= ", jobs);
 
   return (
-    <div className="bg-green-400">
+    <div className="bg-green-00">
       <div className="flex justify-between items-center">
         <TypographyH1 text={"Jobs Posted"} />
         <Button asChild variant="outline">
