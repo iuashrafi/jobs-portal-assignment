@@ -29,6 +29,13 @@ export async function editJob(data: CreateJobSchemaDto) {
   return job;
 }
 
+export async function deleteJob(id: number) {
+  const job = await db.job.delete({
+    where: { id },
+  });
+  return job;
+}
+
 export async function getAllJobs(searchQuery?: string) {
   return await db.job.findMany({
     where: searchQuery

@@ -12,11 +12,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import DeleteJobDialog from "./DeleteJobDialog";
 
 const JobsListing = ({ jobs }: any) => {
   return (
@@ -47,44 +46,44 @@ const JobsListing = ({ jobs }: any) => {
               const isLastRow = index === jobs.length - 1;
               return (
                 <Fragment key={job.id}>
-                  <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}>
-                    <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
-                      <TableCell
-                        className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
-                      >
-                        {job.title}
-                      </TableCell>
-                      <TableCell>{job.location || "Bangalore"}</TableCell>
-                      <TableCell>{job.description}</TableCell>
-                      <TableCell>10</TableCell>
-                      <TableCell
-                        className={`text-right pr-6 ${
-                          isLastRow ? "rounded-br-xl" : ""
-                        }`}
-                      >
-                        <DropdownMenu>
-                          <DropdownMenuTrigger>
-                            <IconDots stroke={2} />
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/company/jobs/${job.id}/applications`}
-                              >
-                                View Applications
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                              <Link href={`/company/jobs/${job.id}/edit`}>
-                                Edit Job
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>Delete Job</DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </TableRow>
-                  </Link>
+                  {/* <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}> */}
+                  <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
+                    <TableCell
+                      className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
+                    >
+                      {job.title}
+                    </TableCell>
+                    <TableCell>{job.location || "Bangalore"}</TableCell>
+                    <TableCell>{job.description}</TableCell>
+                    <TableCell>10</TableCell>
+                    <TableCell
+                      className={`text-right pr-6 ${
+                        isLastRow ? "rounded-br-xl" : ""
+                      }`}
+                    >
+                      <DropdownMenu>
+                        <DropdownMenuTrigger>
+                          <IconDots stroke={2} />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem asChild>
+                            <Link href={`/company/jobs/${job.id}/applications`}>
+                              View Applications
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href={`/company/jobs/${job.id}/edit`}>
+                              Edit Job
+                            </Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <DeleteJobDialog jobId={job.id} />
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                  {/* </Link> */}
                 </Fragment>
               );
             })}
