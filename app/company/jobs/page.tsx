@@ -1,4 +1,3 @@
-import { getAllJobs } from "@/app/actions/jobs";
 import { TypographyH1 } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -8,9 +7,10 @@ import {
   IconChevronsDown,
   IconChevronsUp,
 } from "@tabler/icons-react";
+import { getAllJobsForCompany } from "@/app/actions/company";
 
 export default async function Page() {
-  const jobs = await getAllJobs();
+  const jobs = await getAllJobsForCompany();
   console.log("jobs= ", jobs);
 
   return (
