@@ -72,7 +72,7 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
           toast.success(res.successMessage, {
             position: "bottom-center",
           });
-          router.push(`/company/jobs/${body.id}/edit`);
+          router.refresh();
         } else
           toast.error(res.errorMessage, {
             position: "bottom-center",

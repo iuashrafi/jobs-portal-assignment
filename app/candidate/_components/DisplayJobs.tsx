@@ -48,7 +48,7 @@ const DisplayJobs = ({
             </p>
             <Button
               variant={"primary"}
-              className="w-full rounded-lg mt-auto"
+              className="w-full rounded-lg mt-2"
               asChild
             >
               <Link href={`/candidate/jobs/${job.id}`}>

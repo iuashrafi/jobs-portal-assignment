@@ -65,7 +65,7 @@ const FilterJobs = () => {
         <div className="flex flex-col w-64 space-y-2">
           <label className="text-sm font-medium">Salary Range</label>
           <Slider
-            defaultValue={[3, 10]}
+            defaultValue={salaryRange}
             min={0}
             max={100}
             step={1}

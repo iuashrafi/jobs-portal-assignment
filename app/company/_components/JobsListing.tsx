@@ -17,10 +17,11 @@ import {
 import Link from "next/link";
 import DeleteJobDialog from "./DeleteJobDialog";
 import { Job } from "@prisma/client";
+import { truncateText } from "@/lib/utils";
 
 const JobsListing = ({ jobs }: { jobs: Job[] }) => {
   return (
-    <div className="min-h-screen mt-10 mb-8">
+    <div className="my-10">
       <div className="app-table-shadow rounded-xl">
         <Table className="">
           <TableHeader className="bg-[#F7F9FB] text-base">
@@ -68,7 +69,7 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
                           {job.category}
                         </span>
                         &nbsp;
-                        <span>{job.description}</span>
+                        <span>{truncateText(job.description, 140)}</span>
                       </TableCell>
                       <TableCell>
                         {job.salary > 0 ? `${job.salary} lpa` : `Unpaid`}

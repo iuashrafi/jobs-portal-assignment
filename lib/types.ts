@@ -11,7 +11,7 @@ export const CreateJobSchema = z.object({
   id: z.number().nullable(),
   title: z.string().min(2).max(50),
   category: z.nativeEnum(JobCategory),
-  description: z.string().min(10),
+  description: z.string().min(10).max(3000),
   company: z.string().min(2).max(50),
   location: z.string().min(2).max(50),
   salary: z.coerce.number().int().gte(0),
@@ -24,10 +24,10 @@ A basic application form to submit candidate details (name, email, resume link, 
 */
 export const JobApplicationSchema = z.object({
   jobId: z.string().transform(Number),
-  name: z.string(),
+  name: z.string().min(2).max(50),
   email: z.string().email(),
   resumeLink: z.string().url(),
-  coverLetter: z.string(),
+  coverLetter: z.string().min(10).max(1000),
 });
 
 export type JobApplicationSchemaDto = z.infer<typeof JobApplicationSchema>;
