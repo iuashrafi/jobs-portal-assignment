@@ -75,6 +75,9 @@ export async function getAllJobs(
           : {},
       ],
     },
+    orderBy: {
+      createdAt: "asc",
+    },
     skip,
     take: pageLimit,
   });
@@ -104,6 +107,9 @@ export async function getAllJobs(
             }
           : {},
       ],
+    },
+    orderBy: {
+      createdAt: "asc",
     },
   });
 

@@ -70,6 +70,9 @@ export async function getAllJobsForCompany(
           : {},
       ],
     },
+    orderBy: {
+      createdAt: "asc",
+    },
   });
 }
 
@@ -81,6 +84,7 @@ export async function createJob(data: CreateJobSchemaDto) {
       data: { title, description, category, company, location, salary },
     });
     revalidatePath("/company/jobs");
+    revalidatePath(`/`, "layout");
     return {
       success: true,
       successMessage: "Job created successfully.",
@@ -109,7 +113,9 @@ export async function editJob(data: CreateJobSchemaDto) {
       },
     });
 
-    revalidatePath(`/company/jobs/${id}/edit`);
+    revalidatePath(`/company/jobs/[id]/edit`);
+    revalidatePath(`/company/jobs`);
+    revalidatePath(`/`, "layout");
 
     return { success: true, successMessage: "Job updated successfully." };
   } catch (error) {
@@ -127,6 +133,7 @@ export async function deleteJob(id: number) {
     await db.job.delete({
       where: { id },
     });
+    revalidatePath(`/`, "layout");
     return {
       success: true,
       successMessage: "Job deleted successfully.",
