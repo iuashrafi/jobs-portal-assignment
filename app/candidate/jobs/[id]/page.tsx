@@ -27,12 +27,7 @@ export default async function Page({
         facilis sit?{job?.description}
       </p>
       <div className="pb-6"> Salary : 12 lpa</div>
-      <Button
-        variant={"default"}
-        className="app-btn-primary"
-        size={"lg"}
-        asChild
-      >
+      <Button variant={"primary"} size={"lg"} asChild>
         <Link href={`/candidate/apply/${job?.id}`}>Apply Now</Link>
       </Button>
     </div>

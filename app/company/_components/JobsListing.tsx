@@ -24,21 +24,22 @@ const JobsListing = ({ jobs }: any) => {
         <Table className="">
           <TableHeader className="bg-[#F7F9FB] text-base">
             <TableRow className="">
-              <TableHead className="min-w-[200px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
+              <TableHead className="min-w-[140px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
                 Job Title
               </TableHead>
+              {/* <TableHead className="min-w-[140px] text-black font-semibold">
+                Company
+              </TableHead> */}
               <TableHead className="min-w-[140px] text-black font-semibold">
                 Location
               </TableHead>
-              <TableHead className="min-w-[140px] text-black font-semibold">
+              <TableHead className="min-w-[200px] text-black font-semibold">
                 Description
               </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
-                Applications
+                Salary
               </TableHead>
-              <TableHead className="min-w-[50px] text-black font-semibold text-right rounded-tr-xl pr-8">
-                Actions
-              </TableHead>
+              <TableHead className="min-w-[40px] text-black font-semibold text-right rounded-tr-xl pr-8"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white">
@@ -64,9 +65,18 @@ const JobsListing = ({ jobs }: any) => {
                       >
                         {job.title}
                       </TableCell>
-                      <TableCell>{job.location || "Bangalore"}</TableCell>
-                      <TableCell>{job.description}</TableCell>
-                      <TableCell>10</TableCell>
+                      {/* <TableCell>{job.company}</TableCell> */}
+                      <TableCell>{job.location}</TableCell>
+                      <TableCell>
+                        <span className="border px-1 py-0.5 rounded-md">
+                          {job.category}
+                        </span>
+                        &nbsp;
+                        <span>{job.description}</span>
+                      </TableCell>
+                      <TableCell>
+                        {job.salary > 0 ? `${job.salary} lpa` : `Unpaid`}
+                      </TableCell>
                       <TableCell
                         className={`text-right pr-6 ${
                           isLastRow ? "rounded-br-xl" : ""

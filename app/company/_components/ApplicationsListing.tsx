@@ -8,6 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IconDots } from "@tabler/icons-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const ApplicationsListing = ({ applications }: any) => {
   return (
@@ -16,24 +18,32 @@ const ApplicationsListing = ({ applications }: any) => {
         <Table className="">
           <TableHeader className="bg-[#F7F9FB] text-base">
             <TableRow className="">
-              <TableHead className="min-w-[200px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
+              <TableHead className="w-[140px] text-black font-semibold rounded-tl-xl px-8 py-3">
                 Candidate
               </TableHead>
-              <TableHead className="min-w-[140px] text-black font-semibold">
+              <TableHead className="w-[140px] text-black font-semibold">
                 Email
               </TableHead>
-              <TableHead className="min-w-[140px] text-black font-semibold">
+              <TableHead className="w-[140px] text-black font-semibold">
                 Resume Link
               </TableHead>
-              <TableHead className="min-w-[140px] text-black font-semibold">
+              <TableHead className="w-[200px] text-black font-semibold">
                 Cover Letter
               </TableHead>
-              <TableHead className="min-w-[50px] text-black font-semibold text-right rounded-tr-xl pr-8">
+              <TableHead className="w-[50px] text-black font-semibold text-right rounded-tr-xl pr-8">
                 Actions
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white">
+            {applications.length === 0 && (
+              <TableRow
+                className="h-[60px] italic text-center"
+                aria-colspan={4}
+              >
+                <TableCell colSpan={5}>No Applications Found.</TableCell>
+              </TableRow>
+            )}
             {applications.map((application: any, index: number) => {
               const isLastRow = index === applications.length - 1;
               return (
@@ -45,15 +55,19 @@ const ApplicationsListing = ({ applications }: any) => {
                     >
                       {application.name}
                     </TableCell>
-                    <TableCell>{application.location || "Bangalore"}</TableCell>
-                    <TableCell>{application.description}</TableCell>
-                    <TableCell>10</TableCell>
+                    <TableCell>{application.email}</TableCell>
+                    <TableCell>
+                      <Button variant={"link"} asChild>
+                        <Link href={application.resume}>Resume</Link>
+                      </Button>
+                    </TableCell>
+                    <TableCell>{application.coverLetter}</TableCell>
                     <TableCell
                       className={`text-right pr-6 ${
                         isLastRow ? "rounded-br-xl" : ""
                       }`}
                     >
-                      set
+                      <IconDots stroke={2} />
                       {/* <DropdownMenu>
                         <DropdownMenuTrigger>
                           <IconDots stroke={2} />

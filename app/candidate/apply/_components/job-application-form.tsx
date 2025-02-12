@@ -66,7 +66,9 @@ const JobApplicationForm = ({ jobId }: { jobId: number }) => {
           renderInput={(field) => <Textarea {...field} />}
         />
 
-        <Button type="submit">Apply</Button>
+        <Button type="submit" variant={"primary"}>
+          Apply
+        </Button>
       </form>
     </Form>
   );

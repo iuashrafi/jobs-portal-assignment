@@ -12,7 +12,7 @@ export default async function Page() {
     <div className="bg-green-00">
       <div className="flex justify-between items-center">
         <TypographyH1 text={"Jobs Posted"} />
-        <Button asChild variant="default" className="app-btn-primary">
+        <Button asChild variant="primary">
           <Link href="/company/jobs/new">Create New Job</Link>
         </Button>
       </div>
