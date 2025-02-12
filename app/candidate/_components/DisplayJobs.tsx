@@ -5,8 +5,17 @@ import { Button } from "@/components/ui/button";
 import { truncateText } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { Job } from "@prisma/client";
 
-const DisplayJobs = ({ jobs, currentPage, totalPages }: any) => {
+const DisplayJobs = ({
+  jobs,
+  currentPage,
+  totalPages,
+}: {
+  jobs: Job[];
+  currentPage: number;
+  totalPages: number;
+}) => {
   const router = useRouter();
 
   const handlePagination = (newPage: number) => {
@@ -18,7 +27,7 @@ const DisplayJobs = ({ jobs, currentPage, totalPages }: any) => {
   return (
     <>
       <div className="grid grid-cols-12 gap-4 mt-4">
-        {jobs.map((job: any) => (
+        {jobs.map((job: Job) => (
           <div
             key={job.id}
             className="col-span-12 sm:col-span-6 md:col-span-4 2xl:col-span-3 border app-border p-4 rounded-2xl"

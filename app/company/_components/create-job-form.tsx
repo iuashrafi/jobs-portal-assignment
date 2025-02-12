@@ -186,7 +186,13 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
           renderInput={(field) => <Textarea {...field} />}
         />
         <Button type="submit" size={"lg"} variant={"primary"}>
-          {initialData ? "Update Job" : "Create Job"}
+          {initialData
+            ? isPending
+              ? "Updating..."
+              : "Update Job"
+            : isPending
+            ? "Creating..."
+            : "Create Job"}
         </Button>
       </form>
     </Form>

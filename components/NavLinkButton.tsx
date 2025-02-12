@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { NavLinkType } from "@/lib/types";
 
 const NavLinkButton = ({ navLink }: { navLink: NavLinkType }) => {

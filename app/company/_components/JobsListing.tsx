@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import DeleteJobDialog from "./DeleteJobDialog";
+import { Job } from "@prisma/client";
 
-const JobsListing = ({ jobs }: any) => {
+const JobsListing = ({ jobs }: { jobs: Job[] }) => {
   return (
     <div className="min-h-screen mt-16 mb-8">
       <div className="app-table-shadow rounded-xl">
@@ -26,7 +27,7 @@ const JobsListing = ({ jobs }: any) => {
             <TableRow className="">
               <TableHead className="min-w-[140px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
                 Job Title
-              </TableHead> 
+              </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
                 Location
               </TableHead>
@@ -51,7 +52,7 @@ const JobsListing = ({ jobs }: any) => {
               </TableRow>
             )}
             {jobs.length > 0 &&
-              jobs.map((job: any, index: number) => {
+              jobs.map((job: Job, index: number) => {
                 const isLastRow = index === jobs.length - 1;
                 return (
                   <Fragment key={job.id}>
@@ -61,7 +62,7 @@ const JobsListing = ({ jobs }: any) => {
                         className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
                       >
                         {job.title}
-                      </TableCell> 
+                      </TableCell>
                       <TableCell>{job.location}</TableCell>
                       <TableCell>
                         <span className="border px-1 py-0.5 rounded-md">
@@ -101,7 +102,7 @@ const JobsListing = ({ jobs }: any) => {
                               </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
-                              <DeleteJobDialog jobId={job.id} />
+                              <DeleteJobDialog jobId={String(job.id)} />
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>

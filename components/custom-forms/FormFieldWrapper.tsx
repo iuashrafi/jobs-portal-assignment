@@ -12,7 +12,9 @@ interface FormFieldWrapperProps {
   name: string;
   label: string;
   placeholder?: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   control: Control<any>;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   renderInput: (field: any) => ReactNode; // Pass a function that returns the input component
 }
 

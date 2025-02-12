@@ -10,8 +10,13 @@ import {
 import { IconDots } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Application } from "@prisma/client";
 
-const ApplicationsListing = ({ applications }: any) => {
+const ApplicationsListing = ({
+  applications,
+}: {
+  applications: Application[];
+}) => {
   return (
     <div className="min-h-screen mt-16 mb-8">
       <div className="app-table-shadow rounded-xl">
@@ -44,7 +49,7 @@ const ApplicationsListing = ({ applications }: any) => {
                 <TableCell colSpan={5}>No Applications Found.</TableCell>
               </TableRow>
             )}
-            {applications.map((application: any, index: number) => {
+            {applications.map((application: Application, index: number) => {
               const isLastRow = index === applications.length - 1;
               return (
                 <Fragment key={application.id}>
