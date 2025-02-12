@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { CreateJobSchema, CreateJobSchemaDto } from "@/lib/types";
 import FormFieldWrapper from "@/components/custom-forms/FormFieldWrapper";
 import { Textarea } from "@/components/ui/textarea";
-import { createJob, editJob } from "@/app/actions/jobs";
+import { createJob, editJob } from "@/app/actions/company";
 import {
   Select,
   SelectContent,

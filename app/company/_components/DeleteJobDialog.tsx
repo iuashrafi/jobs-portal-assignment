@@ -13,7 +13,7 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { deleteJob } from "@/app/actions/jobs";
+import { deleteJob } from "@/app/actions/company";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 

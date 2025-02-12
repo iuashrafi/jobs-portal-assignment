@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getAllJobs } from "@/app/actions/jobs";
+import { getAllJobs } from "@/app/actions/candidate";
 import DisplayJobs from "@/app/candidate/_components/DisplayJobs";
 import { TypographyH1 } from "@/components/typography";
 import FilterJobs from "../_components/FilterJobs";
