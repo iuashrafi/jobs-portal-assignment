@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <div className="container mx-auto p-2 md:p-4 lg:p-6 mt-4 sm:mt-6 md:mt-8">
           {children}
         </div>
+        <Toaster />
       </body>
     </html>
   );
