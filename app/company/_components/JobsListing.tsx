@@ -25,7 +25,7 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
         <Table className="">
           <TableHeader className="bg-[#F7F9FB] text-base">
             <TableRow className="">
-              <TableHead className="min-w-[200px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
+              <TableHead className="min-w-[200px] text-black font-semibold rounded-tl-xl px-8 py-3">
                 Job Title
               </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
@@ -80,7 +80,7 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
                       >
                         <DropdownMenu>
                           <DropdownMenuTrigger>
-                            <IconDots stroke={2} />
+                            <IconDots />
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem asChild>

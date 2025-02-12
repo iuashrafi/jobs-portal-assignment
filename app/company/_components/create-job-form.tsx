@@ -59,19 +59,26 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
 
   async function onSubmit(values: CreateJobSchemaDto) {
     startTransition(async () => {
-      if (values.id) {
-        const res = await editJob(values);
+      const body: CreateJobSchemaDto = Object.fromEntries(
+        Object.entries(values).map(([key, value]) => [
+          key,
+          typeof value === "string" ? value.trim() : value,
+        ])
+      ) as CreateJobSchemaDto;
+
+      if (body.id) {
+        const res = await editJob(body);
         if (res.success) {
           toast.success(res.successMessage, {
             position: "bottom-center",
           });
-          router.push(`/company/jobs/${values.id}/edit`);
+          router.push(`/company/jobs/${body.id}/edit`);
         } else
           toast.error(res.errorMessage, {
             position: "bottom-center",
           });
       } else {
-        const res = await createJob(values);
+        const res = await createJob(body);
         if (res.success)
           toast.success(res.successMessage, {
             position: "bottom-center",
@@ -141,34 +148,6 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
             </FormItem>
           )}
         />
-
-        {/* <FormFieldWrapper
-          name="category"
-          label="Category"
-          placeholder="Category Name"
-          control={form.control}
-          renderInput={(field) => (
-            <Select {...field}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a Job Category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={JobCategory.SOFTWARE_ENGINEERING}>
-                  Software Engineering
-                </SelectItem>
-                <SelectItem value={JobCategory.DATA_SCIENCE}>
-                  Data Science
-                </SelectItem>
-                <SelectItem value={JobCategory.DESIGN}>Design</SelectItem>
-                <SelectItem value={JobCategory.MARKETING}>Marketing</SelectItem>
-                <SelectItem value={JobCategory.PRODUCT_MANAGEMENT}>
-                  Product Management
-                </SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          )}
-        /> */}
 
         <FormFieldWrapper
           name="salary"

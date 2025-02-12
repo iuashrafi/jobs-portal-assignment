@@ -18,7 +18,7 @@ const Navbar = () => {
   };
   return (
     <nav className="top-0 z-[50] w-full border-b app-border px-4 flex bg-white h-[60px] md:h-[68px]">
-      <section className="w-full md:px-6 lg:px-8 xl:px-16 flex items-center justify-between md:justify-normal gap-4">
+      <section className="w-full md:px-6 2xl:px-16 flex items-center justify-between md:justify-normal gap-6">
         <Link href="/">
           <Image src="/logo.svg" alt="logo" width={60} height={60} />
         </Link>
