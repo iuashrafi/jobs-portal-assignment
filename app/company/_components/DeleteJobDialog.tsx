@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -14,17 +14,27 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { deleteJob } from "@/app/actions/jobs";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const DeleteJobDialog = ({ jobId }: { jobId: string }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
-  const handleDelete = async (e: any) => {
+  const handleDelete = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsDeleting(true);
-    await deleteJob(Number(jobId));
-    setIsOpen(false);
-    setIsDeleting(false);
+
+    const res = await deleteJob(Number(jobId));
+    if (res.success) {
+      setIsOpen(false);
+      toast.success(res.successMessage, { position: "bottom-center" });
+      setIsDeleting(false);
+      router.push(`/company/jobs`);
+    } else {
+      toast.error(res.errorMessage, { position: "bottom-center" });
+    }
   };
 
   return (
@@ -49,7 +59,7 @@ const DeleteJobDialog = ({ jobId }: { jobId: string }) => {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction asChild>
             <Button
-              variant="destructive"
+              variant={"destructive"}
               onClick={handleDelete}
               disabled={isDeleting}
             >

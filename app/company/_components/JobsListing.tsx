@@ -26,10 +26,7 @@ const JobsListing = ({ jobs }: any) => {
             <TableRow className="">
               <TableHead className="min-w-[140px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
                 Job Title
-              </TableHead>
-              {/* <TableHead className="min-w-[140px] text-black font-semibold">
-                Company
-              </TableHead> */}
+              </TableHead> 
               <TableHead className="min-w-[140px] text-black font-semibold">
                 Location
               </TableHead>
@@ -64,8 +61,7 @@ const JobsListing = ({ jobs }: any) => {
                         className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
                       >
                         {job.title}
-                      </TableCell>
-                      {/* <TableCell>{job.company}</TableCell> */}
+                      </TableCell> 
                       <TableCell>{job.location}</TableCell>
                       <TableCell>
                         <span className="border px-1 py-0.5 rounded-md">

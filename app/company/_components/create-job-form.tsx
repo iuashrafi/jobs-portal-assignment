@@ -1,5 +1,7 @@
 "use client";
 
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -17,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { JobCategory } from "@/lib/enum";
+import toast from "react-hot-toast";
 
 interface CreateJobSchemaProps {
   initialData?: {
@@ -31,6 +34,9 @@ interface CreateJobSchemaProps {
 }
 
 const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<CreateJobSchemaDto>({
     resolver: zodResolver(CreateJobSchema),
     defaultValues: initialData ?? {
@@ -45,18 +51,32 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
   });
 
   async function onSubmit(values: CreateJobSchemaDto) {
-    if (values.id) {
-      const job = await editJob(values);
-      if (!job) {
-        console.log("Error updating a job");
+    startTransition(async () => {
+      if (values.id) {
+        const res = await editJob(values); 
+        if (res.success) {
+          toast.success(res.successMessage, {
+            position: "bottom-center",
+          });
+          router.push(`/company/jobs/${values.id}/edit`);
+        } else
+          toast.error(res.errorMessage, {
+            position: "bottom-center",
+          });
+      } else {
+        const res = await createJob(values);
+        if (res.success)
+          toast.success(res.successMessage, {
+            position: "bottom-center",
+          });
+        else
+          toast.error(res.errorMessage, {
+            position: "bottom-center",
+          });
+
+        router.push("/company/jobs");
       }
-    } else {
-      const job = await createJob(values);
-      if (!job) {
-        console.log("Error creating a job");
-      }
-    }
-    form.reset();
+    });
   }
   return (
     <Form {...form}>
