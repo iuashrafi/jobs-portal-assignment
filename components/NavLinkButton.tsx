@@ -2,7 +2,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavLinkType } from "@/lib/types";
 
-const NavLinkButton = ({ navLink }: { navLink: NavLinkType }) => {
+const NavLinkButton = ({
+  navLink,
+  hideNavDropdown,
+}: {
+  navLink: NavLinkType;
+  hideNavDropdown?: () => void;
+}) => {
   const { label, Icon, href } = navLink;
   const pathname = usePathname();
 
@@ -18,6 +24,11 @@ const NavLinkButton = ({ navLink }: { navLink: NavLinkType }) => {
         isActive ? "bg-[#F6EFFC] text-black" : "text-[#666666]"
       } `}
       scroll={true}
+      onClick={() => {
+        if (hideNavDropdown) {
+          hideNavDropdown();
+        }
+      }}
     >
       {Icon && <Icon strokeWidth={2} />}
       <span className="text-[16px]">{label}</span>
