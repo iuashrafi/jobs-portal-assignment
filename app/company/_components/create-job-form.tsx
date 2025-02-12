@@ -114,7 +114,7 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
           name="category"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Restaurant Lead Status</FormLabel>
+              <FormLabel>Job Category</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>

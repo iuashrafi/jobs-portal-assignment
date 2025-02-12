@@ -30,22 +30,25 @@ const DisplayJobs = ({
 
   return (
     <>
+      {totalPages === 0 && (
+        <div className="italic text-base py-32 text-center">No Jobs Found</div>
+      )}
       <div className="grid grid-cols-12 gap-4 mt-8">
         {jobs.map((job: Job) => (
           <div
             key={job.id}
-            className="col-span-12 sm:col-span-6 md:col-span-4 2xl:col-span-3 border app-border p-4 rounded-2xl"
+            className="group transition ease-in-out card-shadow hover:scale-[1.01] col-span-12 sm:col-span-6 md:col-span-4 2xl:col-span-3 border app-border p-4 rounded-2xl flex flex-col h-full"
           >
             <div className="font-medium text-lg">{job.title}</div>
             <div>
               {job.location} | {job.salary > 0 ? `${job.salary} lpa` : `Unpaid`}
             </div>
-            <p className="app-text-secondary">
-              {truncateText(job.description, 100)}{" "}
+            <p className="app-text-secondary flex-grow">
+              {truncateText(job.description, 100)}
             </p>
             <Button
               variant={"primary"}
-              className="w-full rounded-lg mt-2 text-base"
+              className="w-full rounded-lg mt-auto"
               asChild
             >
               <Link href={`/candidate/jobs/${job.id}`}>
@@ -57,23 +60,25 @@ const DisplayJobs = ({
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-12 space-x-6">
-        <Button
-          variant="secondary"
-          disabled={currentPage === 1}
-          onClick={() => handlePagination(currentPage - 1)}
-        >
-          <IconChevronLeft /> Previous
-        </Button>
-        <span className="flex items-center text-sm">{`Page ${currentPage} of ${totalPages}`}</span>
-        <Button
-          variant="secondary"
-          disabled={currentPage >= totalPages}
-          onClick={() => handlePagination(currentPage + 1)}
-        >
-          Next <IconChevronRight />
-        </Button>
-      </div>
+      {totalPages > 0 && (
+        <div className="flex justify-center mt-12 space-x-6">
+          <Button
+            variant="secondary"
+            disabled={currentPage === 1}
+            onClick={() => handlePagination(currentPage - 1)}
+          >
+            <IconChevronLeft /> Previous
+          </Button>
+          <span className="flex items-center text-sm">{`Page ${currentPage} of ${totalPages}`}</span>
+          <Button
+            variant="secondary"
+            disabled={currentPage >= totalPages}
+            onClick={() => handlePagination(currentPage + 1)}
+          >
+            Next <IconChevronRight />
+          </Button>
+        </div>
+      )}
     </>
   );
 };

@@ -1,3 +1,4 @@
+import { TypographyH1 } from "@/components/typography";
 import JobApplicationForm from "../_components/job-application-form";
 
 export default async function Page({
@@ -8,7 +9,7 @@ export default async function Page({
   const { jobId } = await params;
   return (
     <div>
-      <h1>Apply to this Job with Jobid = {jobId} </h1>
+      <TypographyH1 text="Apply to this job" />
       <JobApplicationForm jobId={jobId} />
     </div>
   );

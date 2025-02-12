@@ -56,7 +56,6 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
                 const isLastRow = index === jobs.length - 1;
                 return (
                   <Fragment key={job.id}>
-                    {/* <Link href={`/company/jobs/${job.id}`} legacyBehavior={true}> */}
                     <TableRow className="h-[60px] app-border hover:bg-[#F7F9FB] hover:cursor-pointer">
                       <TableCell
                         className={`pl-6 ${isLastRow ? "rounded-bl-xl" : ""}`}
@@ -65,7 +64,7 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
                       </TableCell>
                       <TableCell>{job.location}</TableCell>
                       <TableCell>
-                        <span className="border px-1 py-0.5 rounded-md">
+                        <span className="border-none text-sm px-[7px] py-[3px] rounded-md bg-[#FFE3D4] text-[#9F3D00]">
                           {job.category}
                         </span>
                         &nbsp;
@@ -108,7 +107,6 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
                         </DropdownMenu>
                       </TableCell>
                     </TableRow>
-                    {/* </Link> */}
                   </Fragment>
                 );
               })}

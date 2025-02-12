@@ -37,7 +37,7 @@ const JobApplicationForm = ({ jobId }: { jobId: number }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
         <FormFieldWrapper
           name="name"
           label="Candidate Name"
@@ -70,7 +70,12 @@ const JobApplicationForm = ({ jobId }: { jobId: number }) => {
           renderInput={(field) => <Textarea {...field} />}
         />
 
-        <Button type="submit" variant={"primary"}>
+        <Button
+          type="submit"
+          variant={"primary"}
+          size={"lg"}
+          className="text-base"
+        >
           Apply
         </Button>
       </form>
