@@ -20,12 +20,12 @@ import { Job } from "@prisma/client";
 
 const JobsListing = ({ jobs }: { jobs: Job[] }) => {
   return (
-    <div className="min-h-screen mt-16 mb-8">
+    <div className="min-h-screen mt-10 mb-8">
       <div className="app-table-shadow rounded-xl">
         <Table className="">
           <TableHeader className="bg-[#F7F9FB] text-base">
             <TableRow className="">
-              <TableHead className="min-w-[140px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
+              <TableHead className="min-w-[200px] text-black font-semibold w-[100px] rounded-tl-xl px-8 py-3">
                 Job Title
               </TableHead>
               <TableHead className="min-w-[140px] text-black font-semibold">
@@ -34,7 +34,7 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
               <TableHead className="min-w-[200px] text-black font-semibold">
                 Description
               </TableHead>
-              <TableHead className="min-w-[140px] text-black font-semibold">
+              <TableHead className="min-w-[80px] text-black font-semibold">
                 Salary
               </TableHead>
               <TableHead className="min-w-[40px] text-black font-semibold text-right rounded-tr-xl pr-8"></TableHead>

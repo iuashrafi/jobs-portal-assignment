@@ -26,7 +26,7 @@ export default function RootLayout({
         className={`${poppins.className} antialiased`}
       >
         <Navbar />
-        <div className="container mx-auto p-2 md:p-4 lg:p-6 mt-4 sm:mt-6 md:mt-8">
+        <div className="container mx-auto p-4 md:p-4 lg:p-6 mt-4 sm:mt-6 md:mt-8">
           {children}
         </div>
         <Toaster />

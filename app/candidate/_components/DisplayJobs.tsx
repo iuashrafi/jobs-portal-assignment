@@ -4,7 +4,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { truncateText } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import {
+  IconChevronLeft,
+  IconChevronRight,
+  IconChevronsRight,
+} from "@tabler/icons-react";
 import { Job } from "@prisma/client";
 
 const DisplayJobs = ({
@@ -26,7 +30,7 @@ const DisplayJobs = ({
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-4 mt-4">
+      <div className="grid grid-cols-12 gap-4 mt-8">
         {jobs.map((job: Job) => (
           <div
             key={job.id}
@@ -44,7 +48,9 @@ const DisplayJobs = ({
               className="w-full rounded-lg mt-2 text-base"
               asChild
             >
-              <Link href={`/candidate/jobs/${job.id}`}>Apply Now</Link>
+              <Link href={`/candidate/jobs/${job.id}`}>
+                Apply Now <IconChevronsRight />
+              </Link>
             </Button>
           </div>
         ))}

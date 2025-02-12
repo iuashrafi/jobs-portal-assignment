@@ -13,13 +13,13 @@ export default async function Page({
   const job = await getJobById(jobId);
 
   if (!job) {
-    return <>No Job Found!</>;
+    return <>Job Not Found!</>;
   }
 
   return (
     <div>
       <TypographyH1 text={job.title} />
-      <div className="flex gap-3">
+      <div className="flex flex-wrap gap-2 mt-2">
         <span className="flex space-x-1 items-center">
           <IconBuilding stroke={2} />
           <span>{job.company}</span>
@@ -29,8 +29,10 @@ export default async function Page({
           <span>{job.location}</span>
         </span>
       </div>
-      <p className="py-6 text-base">{job?.description}</p>
-      <div className="pb-6 text-base">
+      <p className="p-4 rounded-2xl my-4 text-base bg-neutral-50">
+        {job?.description}
+      </p>
+      <div className="px-4 pb-6 text-base">
         Salary : {job.salary > 0 ? `${job.salary} lpa` : `Unpaid`}
       </div>
     </div>
