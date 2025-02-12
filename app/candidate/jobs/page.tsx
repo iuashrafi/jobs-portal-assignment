@@ -7,28 +7,36 @@ import FilterJobs from "../_components/FilterJobs";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     query?: string;
     category?: string;
     minSalary?: string;
     maxSalary?: string;
-  };
+    pageNo?: string;
+  }>;
 }) {
-  const { query, category, minSalary, maxSalary } = searchParams;
+  const { query, category, minSalary, maxSalary, pageNo } = await searchParams;
+  const currentPage = pageNo ? parseInt(pageNo) : 1;
+
   const jobs = await getAllJobs(
     query || "",
     category || "",
     minSalary ? parseInt(minSalary) : undefined,
-    maxSalary ? parseInt(maxSalary) : undefined
+    maxSalary ? parseInt(maxSalary) : undefined,
+    currentPage,
+    10 // page limit
   );
-  console.log("jobs= ", jobs);
 
   return (
     <div>
       <TypographyH1 text="Jobs" />
       <FilterJobs />
       <Suspense fallback={<p>Loading jobs...</p>}>
-        <DisplayJobs jobs={jobs} />
+        <DisplayJobs
+          jobs={jobs.jobs}
+          currentPage={currentPage}
+          totalPages={jobs.totalPages}
+        />
       </Suspense>
     </div>
   );

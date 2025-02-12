@@ -26,7 +26,7 @@ const jobCategories = [
 const FilterJobs = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [salaryRange, setSalaryRange] = useState([10, 50]); // Default range in LPA (Lakhs Per Annum)
+  const [salaryRange, setSalaryRange] = useState([0, 100]);
   const router = useRouter();
 
   const handleSearch = () => {
