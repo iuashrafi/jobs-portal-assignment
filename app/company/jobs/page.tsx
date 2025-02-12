@@ -7,7 +7,7 @@ import {
   IconChevronsDown,
   IconChevronsUp,
 } from "@tabler/icons-react";
-import { getAllJobsForCompany } from "@/app/actions/company";
+import { getAllJobsForCompany, getDashboardData } from "@/app/actions/company";
 
 export default async function Page() {
   const jobs = await getAllJobsForCompany();
@@ -26,7 +26,9 @@ export default async function Page() {
   );
 }
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  const { jobsListingCount, applicationsCount, shortlistedCount } =
+    await getDashboardData();
   return (
     <div className="grid grid-cols-12 gap-4">
       <div className="col-span-4 p-4 border app-border h-[170px] rounded-2xl ">
@@ -39,7 +41,9 @@ const Dashboard = () => {
           </span>
         </div>
         <div className="mt-6">
-          <span className="text-black font-semibold text-5xl">32</span>
+          <span className="text-black font-semibold text-5xl">
+            {jobsListingCount}
+          </span>
         </div>
         <div className="mt-2.5 flex gap-1 items-center">
           <span className="bg-[#D5FFD4] rounded-md py-1 px-1.5 font-semibold text-sm text-[#039F00] flex items-center">
@@ -58,7 +62,9 @@ const Dashboard = () => {
           </span>
         </div>
         <div className="mt-6">
-          <span className="text-black font-semibold text-5xl">324</span>
+          <span className="text-black font-semibold text-5xl">
+            {applicationsCount}
+          </span>
         </div>
         <div className="mt-2.5 flex gap-1 items-center">
           <span className="bg-[#D5FFD4] rounded-md py-1 px-1.5 font-semibold text-sm text-[#039F00] flex items-center">
@@ -77,7 +83,9 @@ const Dashboard = () => {
           </span>
         </div>
         <div className="mt-6">
-          <span className="text-black font-semibold text-5xl">10</span>
+          <span className="text-black font-semibold text-5xl">
+            {shortlistedCount}
+          </span>
         </div>
         <div className="mt-2.5 flex gap-1 items-center">
           <span className="bg-[#FFD0D0] rounded-md py-1 px-1.5 font-semibold text-sm text-[#E91C1C]  flex items-center">
