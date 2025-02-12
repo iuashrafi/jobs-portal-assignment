@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache";
 export async function createJob(data: CreateJobSchemaDto) {
   try {
     const { title, description, category, company, location, salary } = data;
-    const job = await db.job.create({
+    await db.job.create({
       data: { title, description, category, company, location, salary },
     });
     revalidatePath("/company/jobs");
@@ -32,22 +32,16 @@ export async function editJob(data: CreateJobSchemaDto) {
 
     if (!id) return { success: false, errorMessage: "Job id does not exists." };
 
-    const job = await db.job.update({
+    await db.job.update({
       data: { title, description, category, company, location, salary },
       where: {
         id,
       },
     });
 
-    if (job) {
-      revalidatePath(`/company/jobs/${id}/edit`);
-      return { success: true, successMessage: "Job updated successfully." };
-    } else {
-      return {
-        success: false,
-        errorMessage: "Failed to update job.",
-      };
-    }
+    revalidatePath(`/company/jobs/${id}/edit`);
+
+    return { success: true, successMessage: "Job updated successfully." };
   } catch (error) {
     console.log("Error updating job:", error);
     return {
@@ -59,20 +53,13 @@ export async function editJob(data: CreateJobSchemaDto) {
 
 export async function deleteJob(id: number) {
   try {
-    const job = await db.job.delete({
+    await db.job.delete({
       where: { id },
     });
-    if (job) {
-      return {
-        success: true,
-        successMessage: "Job deleted successfully.",
-      };
-    } else {
-      return {
-        success: false,
-        errorMessage: "Failed to delete job.",
-      };
-    }
+    return {
+      success: true,
+      successMessage: "Job deleted successfully.",
+    };
   } catch (error) {
     console.log("Error deleting a job:", error);
     return {

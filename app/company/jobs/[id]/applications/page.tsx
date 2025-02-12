@@ -11,7 +11,7 @@ export default async function Page({
 }) {
   const { id } = await params;
   const applications = await getApplicationsForJobId(Number(id));
-  console.log("applications = ", applications);
+
   return (
     <div className="bg-green-00">
       <div className="flex justify-between items-center">

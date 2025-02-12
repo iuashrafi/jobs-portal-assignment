@@ -13,7 +13,7 @@ export default async function Page({
   const { id } = await params;
 
   const job = await getJobById(Number(id));
-  console.log("current job = ", job);
+
   return (
     <div>
       <TypographyH1 text={job?.title || ""} />

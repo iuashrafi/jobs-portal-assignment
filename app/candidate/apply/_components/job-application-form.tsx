@@ -9,9 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { JobApplicationSchema, JobApplicationSchemaDto } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const JobApplicationForm = ({ jobId }: { jobId: number }) => {
-  console.log("job id = ", jobId, typeof jobId);
   const form = useForm<JobApplicationSchemaDto>({
     resolver: zodResolver(JobApplicationSchema),
     defaultValues: {
@@ -24,11 +24,15 @@ const JobApplicationForm = ({ jobId }: { jobId: number }) => {
   });
 
   async function onSubmit(values: JobApplicationSchemaDto) {
-    console.log("values= ", values);
-    const application = await createJobApplication(values);
-    if (!application)
-      console.log("Error occurred while submitting application");
-    else form.reset();
+    const res = await createJobApplication(values);
+    if (res.success) {
+      toast.success(res.successMessage, {
+        position: "bottom-center",
+      });
+      form.reset();
+    } else {
+      toast.error(res.errorMessage, { position: "bottom-center" });
+    }
   }
 
   return (

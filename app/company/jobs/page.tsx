@@ -11,7 +11,6 @@ import { getAllJobsForCompany } from "@/app/actions/company";
 
 export default async function Page() {
   const jobs = await getAllJobsForCompany();
-  console.log("jobs= ", jobs);
 
   return (
     <div className="bg-green-00">
