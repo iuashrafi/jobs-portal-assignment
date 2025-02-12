@@ -5,7 +5,14 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { CreateJobSchema, CreateJobSchemaDto } from "@/lib/types";
 import FormFieldWrapper from "@/components/custom-forms/FormFieldWrapper";
@@ -53,7 +60,7 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
   async function onSubmit(values: CreateJobSchemaDto) {
     startTransition(async () => {
       if (values.id) {
-        const res = await editJob(values); 
+        const res = await editJob(values);
         if (res.success) {
           toast.success(res.successMessage, {
             position: "bottom-center",
@@ -102,7 +109,40 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
           control={form.control}
           renderInput={(field) => <Input {...field} type="text" />}
         />
-        <FormFieldWrapper
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Restaurant Lead Status</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a Job Category" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value={JobCategory.SOFTWARE_ENGINEERING}>
+                    Software Engineering
+                  </SelectItem>
+                  <SelectItem value={JobCategory.DATA_SCIENCE}>
+                    Data Science
+                  </SelectItem>
+                  <SelectItem value={JobCategory.DESIGN}>Design</SelectItem>
+                  <SelectItem value={JobCategory.MARKETING}>
+                    Marketing
+                  </SelectItem>
+                  <SelectItem value={JobCategory.PRODUCT_MANAGEMENT}>
+                    Product Management
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* <FormFieldWrapper
           name="category"
           label="Category"
           placeholder="Category Name"
@@ -128,7 +168,7 @@ const CreateJobForm = ({ initialData }: CreateJobSchemaProps) => {
               </SelectContent>
             </Select>
           )}
-        />
+        /> */}
 
         <FormFieldWrapper
           name="salary"
