@@ -70,16 +70,12 @@ DATABASE_URL='postgresql://<username>:<password>@<host>:5432/<database_name>'
   npm run dev
   ```
 
-<!-- ## Screenshots
+## Screenshots
 
 Please check screenshots folder or directly the github link (incase the screenshots doesn't loads locally)
 
+Company Page
 ![ss1](screenshots/ss1.png)
 
+Candidate Page
 ![ss2](screenshots/ss2.png)
-
-![ss3](screenshots/ss3.png)
-
-![ss4](screenshots/ss4.png)
-
-![ss5](screenshots/ss5.png) -->
