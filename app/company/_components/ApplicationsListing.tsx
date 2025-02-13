@@ -75,16 +75,7 @@ const ApplicationsListing = ({
                         isLastRow ? "rounded-br-xl" : ""
                       }`}
                     >
-                      <DropdownMenu>
-                        <DropdownMenuTrigger>
-                          <IconDots />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>Shortlist</DropdownMenuItem>
-                          <DropdownMenuItem>Hire</DropdownMenuItem>
-                          <DropdownMenuItem>Reject</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                      <ActionDropdownMenu />
                     </TableCell>
                   </TableRow>
                 </Fragment>
@@ -98,3 +89,18 @@ const ApplicationsListing = ({
 };
 
 export default ApplicationsListing;
+
+const ActionDropdownMenu = () => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <IconDots />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem>Shortlist</DropdownMenuItem>
+        <DropdownMenuItem>Hire</DropdownMenuItem>
+        <DropdownMenuItem>Reject</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};

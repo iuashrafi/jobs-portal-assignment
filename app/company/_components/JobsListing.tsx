@@ -79,33 +79,7 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
                           isLastRow ? "rounded-br-xl" : ""
                         }`}
                       >
-                        <DropdownMenu>
-                          <DropdownMenuTrigger>
-                            <IconDots />
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuItem asChild>
-                              <Link href={`/company/jobs/${job.id}`}>
-                                View Job
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/company/jobs/${job.id}/applications`}
-                              >
-                                View Applications
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                              <Link href={`/company/jobs/${job.id}/edit`}>
-                                Edit Job
-                              </Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                              <DeleteJobDialog jobId={String(job.id)} />
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
+                        <ActionDropdownMenu jobId={job.id} />
                       </TableCell>
                     </TableRow>
                   </Fragment>
@@ -119,3 +93,29 @@ const JobsListing = ({ jobs }: { jobs: Job[] }) => {
 };
 
 export default JobsListing;
+
+const ActionDropdownMenu = ({ jobId }: { jobId: number }) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <IconDots />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem asChild>
+          <Link href={`/company/jobs/${jobId}`}>View Job</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={`/company/jobs/${jobId}/applications`}>
+            View Applications
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={`/company/jobs/${jobId}/edit`}>Edit Job</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <DeleteJobDialog jobId={String(jobId)} />
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
